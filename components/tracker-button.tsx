@@ -2,7 +2,7 @@
 
 import { signOutAction } from "@/app/actions";
 import { AnimatePresence, motion } from "framer-motion";
-import { Asterisk, KeyRound, List, Plus, X } from "lucide-react";
+import { KeyRound, List, Plus, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -64,15 +64,17 @@ export default function TrackerButton() {
         </button>
         <AnimatePresence>
           {isListOnClick && (
-            <motion.span
-              initial={{ opacity: 0, y: -4 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.3 }}
-              className="self-center hover:border-b hover:border-secondary"
-            >
-              List Problems
-            </motion.span>
+            <Link href="/protected/list-problems">
+              <motion.span
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.3 }}
+                className="self-center hover:border-b hover:border-secondary"
+              >
+                List Problems
+              </motion.span>
+            </Link>
           )}
         </AnimatePresence>
       </div>
