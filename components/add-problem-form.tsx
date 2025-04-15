@@ -20,17 +20,17 @@ export const formSchema = z.object({
 
   problem_statement: z
     .string()
-    .max(8000, {
+    .max(3000, {
       message:
-        "Details must be less than 8000 characters. You may use the Problem URL if the code is too long.",
+        "Details must be less than 3000 characters. You may use the Problem URL if the code is too long.",
     })
     .optional(),
 
   solution_code: z
     .string()
-    .max(8000, {
+    .max(5000, {
       message:
-        "Solution must be less than 8000 characters. You may use the Solution URL if the code is too long.",
+        "Solution must be less than 5000 characters. You may use the Solution URL if the code is too long.",
     })
     .optional(),
 
