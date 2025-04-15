@@ -9,8 +9,9 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "coding-problems-tracker",
+  description:
+    "A simple way to track coding problems you're solving across different platforms.",
 };
 
 export default function RootLayout({
@@ -30,7 +31,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="min-h-screen flex flex-col items-center">
+          <main className="min-h-screen flex flex-col items-center my-8">
             <div className="flex-1 w-full flex flex-col items-center justify-center">
               <header className="w-full flex justify-center">
                 <div className="w-full max-w-4xl flex gap-5 items-center p-3 px-5 justify-center hover:text-primary font-semibold">
@@ -46,7 +47,7 @@ export default function RootLayout({
                   </Link>
                 </div>
               </header>
-              <div className="flex flex-col gap-22 max-w-4xl p-1">
+              <div className="flex flex-col gap-22 w-full max-w-xl p-1 justify-center items-center">
                 {children}
               </div>
 
