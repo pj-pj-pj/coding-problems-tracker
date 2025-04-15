@@ -20,11 +20,11 @@ export default async function Signup(props: {
 
   return (
     <form className="flex flex-col min-w-64 max-w-64 mx-auto">
-      <span className="flex items-center gap-1 text-destructive py-1 pb-2 justify-center">
+      <span className="flex items-center gap-3 text-destructive py-1 pb-2">
         <ChevronDown
-          size={21}
+          size={20}
           strokeWidth={3}
-          className="self-center pb-1"
+          className="self-center"
         />
         <h1 className="text-base font-bold">Sign up</h1>
       </span>
@@ -42,6 +42,7 @@ export default async function Signup(props: {
         <Input
           name="email"
           placeholder="you@example.com"
+          className="border-destructive"
           required
         />
         <Label htmlFor="password">Password</Label>
@@ -50,9 +51,11 @@ export default async function Signup(props: {
           name="password"
           placeholder="Your password"
           minLength={6}
+          className="border-destructive"
           required
         />
         <SubmitButton
+          className="bg-destructive hover:bg-red-300 hover:text-destructive hover:border hover:border-destructive"
           formAction={signUpAction}
           pendingText="Signing up..."
         >
