@@ -8,14 +8,14 @@
   :root {
     --background: 34 100% 90.5%; /* #FFF3E5 converted to HSL */
     --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
+    --card: 33 97% 90%;
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
     --primary: 24.6 95% 53.1%; /* Tailwind's orange-500 in HSL */
     --primary-foreground: 0 0% 100%; /* White text for better contrast */
-    --secondary: 203 65% 60%; /* blue */
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 203 70% 48%; /* blue */
+    --secondary-foreground: 202 52% 99%; /* blue */
     --muted: 24.6 100% 75%; /* light orange */
     --muted-foreground: 0 0% 45.1%;
     --accent: 24.6 95% 53.1%; /* Matching orange accent */
