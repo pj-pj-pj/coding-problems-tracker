@@ -2,13 +2,14 @@
 
 import { signOutAction } from "@/app/actions";
 import { AnimatePresence, motion } from "framer-motion";
-import { List, Plus, X } from "lucide-react";
+import { Asterisk, KeyRound, List, Plus, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function TrackerButton() {
   const [isAddOnClick, setIsAddOnClick] = useState(false);
   const [isListOnClick, setIsListOnClick] = useState(false);
+  const [isResetOnClick, setIsResetOnClick] = useState(false);
   const [isLogoutOnClick, setIsLogoutOnClick] = useState(false);
 
   const btnStyle =
@@ -24,6 +25,7 @@ export default function TrackerButton() {
           onClick={() => {
             setIsAddOnClick(!isAddOnClick);
             setIsListOnClick(false);
+            setIsResetOnClick(false);
             setIsLogoutOnClick(false);
           }}
           type="button"
@@ -33,7 +35,7 @@ export default function TrackerButton() {
         </button>
         <AnimatePresence>
           {isAddOnClick && (
-            <Link href="/add-problem">
+            <Link href="/protected/add-problem">
               <motion.span
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -52,6 +54,7 @@ export default function TrackerButton() {
           onClick={() => {
             setIsAddOnClick(false);
             setIsListOnClick(!isListOnClick);
+            setIsResetOnClick(false);
             setIsLogoutOnClick(false);
           }}
           type="button"
@@ -73,11 +76,41 @@ export default function TrackerButton() {
           )}
         </AnimatePresence>
       </div>
+      <div className={`text-violet-500 ${btnContainerStyle}`}>
+        <button
+          onClick={() => {
+            setIsAddOnClick(false);
+            setIsListOnClick(false);
+            setIsResetOnClick(!isResetOnClick);
+            setIsLogoutOnClick(false);
+          }}
+          type="button"
+          className={`border-violet-500 text-violet-500 ${btnStyle}`}
+        >
+          <KeyRound size={btnSize} />
+        </button>
+        <AnimatePresence>
+          {isResetOnClick && (
+            <Link href="/protected/reset-password">
+              <motion.span
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.3 }}
+                className="self-center hover:border-b hover:border-violet-500"
+              >
+                Reset Password
+              </motion.span>
+            </Link>
+          )}
+        </AnimatePresence>
+      </div>
       <div className={`text-destructive ${btnContainerStyle}`}>
         <button
           onClick={() => {
             setIsAddOnClick(false);
             setIsListOnClick(false);
+            setIsResetOnClick(false);
             setIsLogoutOnClick(!isLogoutOnClick);
           }}
           type="button"
