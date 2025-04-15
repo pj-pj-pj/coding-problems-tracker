@@ -14,7 +14,7 @@
     --popover-foreground: 0 0% 3.9%;
     --primary: 24.6 95% 53.1%; /* Tailwind's orange-500 in HSL */
     --primary-foreground: 0 0% 100%; /* White text for better contrast */
-    --secondary: 0 0% 96.1%;
+    --secondary: 203 65% 60%; /* blue */
     --secondary-foreground: 0 0% 9%;
     --muted: 24.6 100% 75%; /* light orange */
     --muted-foreground: 0 0% 45.1%;
