@@ -12,12 +12,12 @@ export default async function Home() {
         />
         <Link
           href="/sign-in/"
-          className="text-orange-500 px-2 m-0 hover:bg-orange-500 hover:text-orange-100"
+          className="text-primary px-2 m-0 hover:bg-primary hover:text-background"
         >
           Sign in
         </Link>
       </div>
-      <div className="flex text-sm center content-center ">
+      <div className="flex text-sm center content-center">
         <ChevronRight
           color="oklch(0.637 0.237 25.331)"
           size={19}
@@ -25,7 +25,7 @@ export default async function Home() {
         />
         <Link
           href="/sign-up/"
-          className="text-red-500 px-2 m-0 hover:bg-red-500 hover:text-orange-100"
+          className="text-destructive px-2 m-0 hover:bg-destructive hover:text-background"
         >
           Sign up
         </Link>
