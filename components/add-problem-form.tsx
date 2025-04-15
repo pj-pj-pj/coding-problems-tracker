@@ -43,7 +43,7 @@ export const formSchema = z.object({
   }),
 });
 
-type FormData = z.infer<typeof formSchema>;
+export type FormData = z.infer<typeof formSchema>;
 
 export default function AddProblemForm() {
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -92,7 +92,7 @@ export default function AddProblemForm() {
     "rounded-xs bg-[#fcdfb8] border-b-2 border-t-0 border-r-0 border-l-0 border-b-primary mb-3 px-2 py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:border-b-0 h-7";
   const errorStyles = "text-red-500";
   const textareaStyle =
-    "flex h-full w-full border border-input bg-background px-3 text-xs ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50";
+    "flex bg-[#fcdfb8] h-full w-full border border-input px-3 text-xs ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50";
 
   return (
     <form
@@ -113,8 +113,8 @@ export default function AddProblemForm() {
         className={fieldStyles}
       />
 
-      <span className="flex gap-2">
-        <span className="flex flex-col flex-1/2">
+      <span className="flex gap-2 w-full">
+        <span className="flex flex-col w-full">
           <Label className="text-[.680rem]">
             Problem URL
             {errors.problem_url && (
@@ -129,7 +129,7 @@ export default function AddProblemForm() {
           />
         </span>
 
-        <span className="flex flex-col flex-1/2">
+        <span className="flex flex-col w-full">
           <Label className="text-[.680rem]">
             Solution URL
             {errors.solution_url && (
@@ -173,8 +173,8 @@ export default function AddProblemForm() {
         rows={12}
       />
 
-      <span className="flex gap-3">
-        <span className="flex flex-col">
+      <span className="flex w-full gap-3">
+        <span className="flex w-full flex-col">
           <Label className="text-[.680rem]">
             Difficulty
             <span className={errorStyles}>*</span>
@@ -186,7 +186,7 @@ export default function AddProblemForm() {
           </Label>
           <select
             id="difficulty"
-            className={`h-10 ${fieldStyles}`}
+            className={`h-10 w-full ${fieldStyles}`}
             {...register("difficulty", {
               required: "Difficulty is required",
             })}
@@ -198,7 +198,7 @@ export default function AddProblemForm() {
           </select>
         </span>
 
-        <span className="flex flex-col">
+        <span className="flex w-full flex-col">
           <Label className="text-[.680rem]">
             Status
             <span className={errorStyles}>*</span>
@@ -210,7 +210,7 @@ export default function AddProblemForm() {
           </Label>
           <select
             id="status"
-            className={`h-10 ${fieldStyles}`}
+            className={`h-10 w-full ${fieldStyles}`}
             {...register("status", { required: "Status is required" })}
           >
             <option value="">Select</option>
@@ -221,7 +221,7 @@ export default function AddProblemForm() {
         </span>
         <button
           type="submit"
-          className="h-9 flex-1/2 cursor-pointer w-full hover:bg-orange-200 text-[#FFEACF] hover:text-primary my-auto bg-primary border-[1px] border-primary px-3 py-2 rounded-xs"
+          className="h-9 cursor-pointer hover:bg-orange-200 text-[#FFEACF] hover:text-primary my-auto bg-primary border-[1px] border-primary px-16 py-2 rounded-xs"
         >
           {isSubmitting ? "Submitting..." : "Submit"}
         </button>
