@@ -55,6 +55,7 @@ export default function RootLayout({
                 <span className="flex gap-2 items-center">
                   {`© Copyright ${new Date().getFullYear()}`}{" "}
                   <a
+                    target="blank"
                     href="https://github.com/pj-pj-pj/coding-problems-tracker"
                     className="text-purple-600 hover:border-b hover:border-purple-600 flex items-center gap-1"
                   >
@@ -70,6 +71,7 @@ export default function RootLayout({
                 <span>
                   Made with {` `}
                   <a
+                    target="blank"
                     href="https://vercel.com/templates/next.js/nextjs-boilerplate"
                     className="text-pink-600 hover:border-b hover:border-pink-600"
                   >
