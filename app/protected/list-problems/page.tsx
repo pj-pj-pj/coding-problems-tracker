@@ -17,10 +17,21 @@ export default function Page() {
     const getData = async () => {
       try {
         setLoading(true);
-        const { data, error } = await supabase.from("problems").select("*");
+        const { data, error } = await supabase
+          .from("problems")
+          .select("*")
+          .order("created_at", { ascending: false });
+
+        const sortedData = data
+          ? [...data].sort(
+              (a, b) =>
+                new Date(b.created_at).getTime() -
+                new Date(a.created_at).getTime()
+            )
+          : [];
 
         if (error) throw error;
-        setProblems(data);
+        setProblems(sortedData);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
@@ -32,7 +43,10 @@ export default function Page() {
 
   const handleSearch = async () => {
     if (!searchQuery.trim()) {
-      const { data, error } = await supabase.from("problems").select("*");
+      const { data, error } = await supabase
+        .from("problems")
+        .select("*")
+        .order("created_at", { ascending: false });
 
       if (error) throw error;
       setProblems(data);
@@ -93,6 +107,7 @@ export default function Page() {
         <ProblemItem
           key={problem.id}
           problem={problem}
+          setProblems={setProblems}
         />
       ))}
       {searchQuery && !problems?.length && (
