@@ -31,7 +31,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="min-h-screen flex flex-col items-center my-8">
+          <main className="min-h-screen flex flex-col items-center py-8">
             <div className="flex-1 w-full flex flex-col items-center justify-center">
               <header className="w-full flex justify-center">
                 <div className="w-full max-w-4xl flex gap-5 items-center p-3 px-5 justify-center hover:text-primary font-semibold">
