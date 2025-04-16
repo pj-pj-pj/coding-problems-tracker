@@ -27,10 +27,15 @@ export default function ProblemDialog({ problem, setProblems }: any) {
 
     const { data } = await supabase.from("problems").select("*");
 
-    setProblems(data);
-    if (error) {
-      throw new Error(error.message);
-    }
+    const sortedData = data
+      ? [...data].sort(
+          (a, b) =>
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        )
+      : [];
+
+    if (error) throw error;
+    setProblems(sortedData);
 
     setIsDeleteClicked(false);
     return true;
