@@ -2,6 +2,8 @@
 
 import Markdown from "react-markdown";
 import { SubmitButton } from "./submit-button";
+import { createClient } from "@/utils/supabase/client";
+
 import {
   DialogClose,
   DialogDescription,
@@ -10,9 +12,30 @@ import {
   DialogTitle,
 } from "./ui/dialog";
 import { Highlight, themes } from "prism-react-renderer";
-import { Trash2 } from "lucide-react";
+import { ChevronRight, Trash2 } from "lucide-react";
+import { useState } from "react";
 
-export default function ProblemDialog({ problem }: any) {
+export default function ProblemDialog({ problem, setProblems }: any) {
+  const [isDeleteClicked, setIsDeleteClicked] = useState<boolean>(false);
+
+  const handleDelete = async () => {
+    const supabase = createClient();
+    const { error } = await supabase
+      .from("problems")
+      .delete()
+      .eq("id", problem.id);
+
+    const { data } = await supabase.from("problems").select("*");
+
+    setProblems(data);
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    setIsDeleteClicked(false);
+    return true;
+  };
+
   return (
     <>
       <DialogHeader>
@@ -120,15 +143,53 @@ export default function ProblemDialog({ problem }: any) {
 
         <div className="mt-4">
           <DialogFooter>
-            <DialogFooter>
-              <SubmitButton className="flex items-center gap-2 bg-destructive hover:bg-red-300 hover:text-destructive hover:border hover:border-destructive">
-                <Trash2 size={14} />
-                Delete Problem
-              </SubmitButton>
-              <SubmitButton className="bg-violet-700 hover:bg-violet-300 hover:text-violet-700 hover:border hover:border-violet-700">
-                Edit Problem
-              </SubmitButton>
-            </DialogFooter>
+            {!isDeleteClicked ? (
+              <DialogFooter>
+                <SubmitButton
+                  onClick={() => setIsDeleteClicked(true)}
+                  className="flex items-center gap-2 bg-destructive hover:bg-red-300 hover:text-destructive hover:border hover:border-destructive"
+                >
+                  <Trash2 size={14} />
+                  Delete Problem
+                </SubmitButton>
+                <SubmitButton
+                  disabled
+                  className="bg-violet-700 hover:bg-violet-300 hover:text-violet-700 hover:border hover:border-violet-700"
+                >
+                  Edit Problem
+                </SubmitButton>
+              </DialogFooter>
+            ) : (
+              <div className="text-base font-bold">
+                <span>Delete Problem?</span>
+
+                <span className="cursor-pointer flex flex-col">
+                  <span
+                    className="hover:bg-destructive hover:text-background underline text-destructive flex items-center"
+                    onClick={handleDelete}
+                  >
+                    <ChevronRight
+                      size={16}
+                      strokeWidth={3}
+                      className="mr-3"
+                    />
+                    Yes
+                  </span>
+                  <span
+                    className="hover:bg-primary underline text-primary hover:text-background flex items-center"
+                    onClick={() => setIsDeleteClicked(false)}
+                  >
+                    <ChevronRight
+                      size={16}
+                      strokeWidth={3}
+                      className="mr-3"
+                    />
+                    No
+                  </span>
+                </span>
+              </div>
+            )}
+
             <DialogFooter>
               <SubmitButton className="hover:bg-muted hover:border hover:border-primary hover:text-primary">
                 <DialogClose>Done</DialogClose>

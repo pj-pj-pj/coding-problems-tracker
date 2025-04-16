@@ -3,7 +3,7 @@
 import ProblemDialog from "./problem-dialog";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 
-export default function ProblemItem({ problem }: any) {
+export default function ProblemItem({ problem, setProblems }: any) {
   return (
     <li className="text-xs bg-card hover:bg-orange-200 p-4 border border-secondary w-full flex-1/2 space-y-1">
       <span className="flex text-sm gap-3 font-semibold items-center mb-3 max-w-[480px]">
@@ -57,7 +57,10 @@ export default function ProblemItem({ problem }: any) {
           View Problem
         </DialogTrigger>
         <DialogContent>
-          <ProblemDialog problem={problem} />
+          <ProblemDialog
+            problem={problem}
+            setProblems={setProblems}
+          />
         </DialogContent>
       </Dialog>
     </li>
